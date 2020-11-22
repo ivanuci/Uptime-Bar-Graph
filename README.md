@@ -10,17 +10,17 @@ Bar graph for monitoring uptime. Includes Tooltip on mouseover. Slider added for
  * <script type="text/javascript" src="tooltip.js"></script> <!-- optional -->
  * <script type="text/javascript" src="slider.js"></script> <!-- optional -->
 
-### DATA example (time and uptime measured in seconds using UTC):
+### DATA example:
  * const sistemAData = [
     { time: 1604488863, uptime: 18144290 },
     { time: 1604596863, uptime: 80000 },
- ];
+ ]; // time and uptime in seconds
 
 ### Basic call:
  * let sistemABar = graphTools.uptimeBar("sistemADiv", 450, 40, 2, sistemAData, null)
  * sistemABar.draw(new Date(), 28, 0)
 
-### Example of usage:
+### uptimeBar in example:
  * uptime.html
 
 
