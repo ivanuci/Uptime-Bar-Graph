@@ -78,8 +78,8 @@ graphTools.singleBar = function (width, height, data, vertical, tooltip) {
 }
 
 
-// Multiple Bar Graph
-graphTools.cMultipleBar = function (parent, width, height, gap, sistemData, tooltip) {
+// Uptime Bar Graph
+graphTools.cUptimeBar = function (parent, width, height, gap, sistemData, tooltip) {
 
     this.parent = document.getElementById(parent);
     this.width = width
@@ -111,7 +111,7 @@ graphTools.cMultipleBar = function (parent, width, height, gap, sistemData, tool
 
 }
 
-graphTools.cMultipleBar.prototype.getDayGraphData = function (dayStartTime) {
+graphTools.cUptimeBar.prototype.getDayGraphData = function (dayStartTime) {
 
     let dayStart = dayStartTime;
     let dayEnd = dayStart + 86399; //daySeconds = 60 * 60 * 24 - 1 = 86399 (second before midnight)
@@ -135,13 +135,13 @@ graphTools.cMultipleBar.prototype.getDayGraphData = function (dayStartTime) {
     return dayGraphData;
 }
 
-graphTools.cMultipleBar.prototype.zeroDayTime = function (day) {
+graphTools.cUptimeBar.prototype.zeroDayTime = function (day) {
 
     let msFrom1970 = Date.UTC(day.getFullYear(), day.getMonth(), day.getDate())
     return Math.floor(msFrom1970 / 1000);
 }
 
-graphTools.cMultipleBar.prototype.draw = function (lastDayOnBar, historyDays, lastDayOffset) {
+graphTools.cUptimeBar.prototype.draw = function (lastDayOnBar, historyDays, lastDayOffset) {
 
     this.svg.removeChildren()
 
@@ -162,7 +162,7 @@ graphTools.cMultipleBar.prototype.draw = function (lastDayOnBar, historyDays, la
     }
 }
 
-graphTools.cMultipleBar.prototype.calcUptimeDowntime = function (startTime, endTime) {
+graphTools.cUptimeBar.prototype.calcUptimeDowntime = function (startTime, endTime) {
 
     let rangesStatus = algorithms.rangesIntersectionStatus([startTime, endTime], this.ranges);
 
@@ -180,7 +180,7 @@ graphTools.cMultipleBar.prototype.calcUptimeDowntime = function (startTime, endT
 
 
 /*
-graphTools.cMultipleBar.prototype.shiftRight = function () {
+graphTools.cUptimeBar.prototype.shiftRight = function () {
 
     this.bars[this.bars.length - 1].remove()
     this.bars[this.bars.length - 1] = null
@@ -197,7 +197,7 @@ graphTools.cMultipleBar.prototype.shiftRight = function () {
     this.bars.unshift(nBar)
 }
 
-graphTools.cMultipleBar.prototype.shiftLeft = function () {
+graphTools.cUptimeBar.prototype.shiftLeft = function () {
 
     this.bars[0].remove()
     this.bars[0] = null
@@ -216,6 +216,6 @@ graphTools.cMultipleBar.prototype.shiftLeft = function () {
 }
 */
 
-graphTools.multipleBar = function (parent, width, height, gap, sistemData, tooltip) {
-    return new graphTools.cMultipleBar(parent, width, height, gap, sistemData, tooltip)
+graphTools.uptimeBar = function (parent, width, height, gap, sistemData, tooltip) {
+    return new graphTools.cUptimeBar(parent, width, height, gap, sistemData, tooltip)
 }
