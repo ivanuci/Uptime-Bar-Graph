@@ -9,7 +9,7 @@ Bar graph for monitoring uptime. Includes Tooltip on mouseover. Slider added for
  * <script type="text/javascript" src="slider.js"></script> <!-- optional -->
 
 ### DATA example (time and uptime measured in seconds using UTC):
- const sistemAData = [
+ * const sistemAData = [
     { time: 1604488863, uptime: 18144290 },
     { time: 1604596863, uptime: 80000 },
  ];
