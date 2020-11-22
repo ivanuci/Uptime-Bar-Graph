@@ -46,7 +46,7 @@ algorithms.rangesIntersection = function (main, a) {
     }
 
     return intersections.length > 0 ? intersections : null;
-};
+}; 
 
 
 algorithms.rangesIntersectionStatus = function (main, ranges) {
