@@ -46,7 +46,7 @@ algorithms.rangesIntersection = function (main, a) {
     }
 
     return intersections.length > 0 ? intersections : null;
-}; 
+};
 
 
 algorithms.rangesIntersectionStatus = function (main, ranges) {
@@ -74,10 +74,10 @@ algorithms.rangesIntersectionStatus = function (main, ranges) {
     let sequence = [];
     sequence.push(main[0]);
     for (let i = 0; i < intersections.length; i++) {
-        sequence.push(intersections[i][0] - 1);
+        sequence.push(intersections[i][0]); // - 1
         sequence.push(intersections[i][0]);
         sequence.push(intersections[i][1]);
-        sequence.push(intersections[i][1] + 1);
+        sequence.push(intersections[i][1]); // + 1
     }
     sequence.push(main[1]);
 

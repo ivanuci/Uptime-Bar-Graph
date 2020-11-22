@@ -39,6 +39,7 @@ tooltip.cInstance = function () {
     cellStartName.style.textAlign = "right"
     this.ttStart = rowStart.insertCell()
     this.ttStart.innerHTML = "123"
+    this.ttStart.style.fontWeight = "bold"
 
     var rowEnd = table.insertRow()
     var cellEndName = rowEnd.insertCell()

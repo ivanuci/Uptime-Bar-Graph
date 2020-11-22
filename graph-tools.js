@@ -114,7 +114,7 @@ graphTools.cUptimeBar = function (parent, width, height, gap, sistemData, toolti
 graphTools.cUptimeBar.prototype.getDayGraphData = function (dayStartTime) {
 
     let dayStart = dayStartTime;
-    let dayEnd = dayStart + 86399; //daySeconds = 60 * 60 * 24 - 1 = 86399 (second before midnight)
+    let dayEnd = dayStart + 86400; //daySeconds = 60 * 60 * 24 = 86400
 
     let dayRangesStatus = algorithms.rangesIntersectionStatus([dayStart, dayEnd], this.ranges);
 
