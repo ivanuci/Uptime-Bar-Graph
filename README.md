@@ -1,6 +1,8 @@
 # Uptime-Bar-Graph
 Bar graph for monitoring uptime. Includes Tooltip on mouseover. Slider added for history insight. Code is in pure javascript and is using svg elements to draw graph.
 
+![alt text](https://github.com/ivanuci/Uptime-Bar-Graph/blob/master/image.jpg?raw=true)
+
 ### Include in html (follow the order):
  * <script type="text/javascript" src="algorithms.js"></script>
  * <script type="text/javascript" src="svg-tools.js"></script>
