@@ -15,7 +15,7 @@ Bar graph for monitoring uptime. Includes Tooltip on mouseover. Slider added for
  ];
 
 ### Basic call:
- * let sistemABar = graphTools.multipleBar("sistemADiv", 450, 40, 2, sistemAData, null)
+ * let sistemABar = graphTools.uptimeBar("sistemADiv", 450, 40, 2, sistemAData, null)
  * sistemABar.draw(new Date(), 28, 0)
 
 ### Example of usage:
