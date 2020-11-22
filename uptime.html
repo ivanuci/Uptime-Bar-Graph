@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Uptime</title>
+
+    <script type="text/javascript" src="algorithms.js"></script>
+    <script type="text/javascript" src="svg-tools.js"></script>
+    <script type="text/javascript" src="graph-tools.js"></script>
+    <script type="text/javascript" src="tooltip.js"></script>
+    <script type="text/javascript" src="slider.js"></script>
+</head>
+
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+
+    .system {
+        margin: 10px 0 5px 0;
+    }
+</style>
+
+<body>
+    <h3>SYSTEM UPTIME</h3>
+
+    <div id="sliderBar"></div>
+
+    <div class="system">Sistem A</div>
+    <div id="sistemADiv"></div>
+
+    <div class="system">Sistem B</div>
+    <div id="sistemBDiv"></div>
+
+    <script>
+
+        // DATA (use UTC time!)
+        // time = time of saving the system's current uptime value
+        // uptime = system's current uptime value
+        const sistemAData = [
+            { time: 1604488863, uptime: 18144290 },
+            { time: 1604596863, uptime: 80000 },
+        ];
+        const sistemBData = [
+            { time: 1604088870, uptime: 18207519 },
+            { time: 1604488870, uptime: 200000 },
+            { time: 1604596863, uptime: 50000 },
+        ];
+
+        // tooltip
+        tooltip.instance.appendToParent(document.body);
+
+        // graphs
+        sistemABar = graphTools.multipleBar("sistemADiv", 450, 40, 2, sistemAData, tooltip.instance)
+        sistemBBar = graphTools.multipleBar("sistemBDiv", 450, 40, 2, sistemBData, tooltip.instance)
+
+        // slider
+        let sliderUpdate = function () {
+            let viewDay = new Date()
+            sistemABar.draw(viewDay, 28, this.value)
+            sistemBBar.draw(viewDay, 28, this.value)
+        };
+        slider.create("sliderBar", "450px", sliderUpdate);
+
+    </script>
+</body>
+
+</html>
