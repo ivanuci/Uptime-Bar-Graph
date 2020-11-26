@@ -137,8 +137,8 @@ graphTools.cUptimeBar.prototype.getDayGraphData = function (dayStartTime) {
 
 graphTools.cUptimeBar.prototype.zeroDayTime = function (day) {
 
-    let msFrom1970 = Date.UTC(day.getFullYear(), day.getMonth(), day.getDate())
-    return Math.floor(msFrom1970 / 1000);
+    let msFrom1970 = day.getTime()
+    return Math.floor((msFrom1970 - (msFrom1970 % 864E5)) / 1000);
 }
 
 graphTools.cUptimeBar.prototype.draw = function (lastDayOnBar, historyDays, lastDayOffset) {
@@ -162,7 +162,10 @@ graphTools.cUptimeBar.prototype.draw = function (lastDayOnBar, historyDays, last
     }
 }
 
-graphTools.cUptimeBar.prototype.calcUptimeDowntime = function (startTime, endTime) {
+// Calculate SLA
+graphTools.cUptimeBar.prototype.calcSLARange = function (startTime, endTime) {
+
+    let measuretime = endTime - startTime
 
     let rangesStatus = algorithms.rangesIntersectionStatus([startTime, endTime], this.ranges);
 
@@ -173,9 +176,61 @@ graphTools.cUptimeBar.prototype.calcUptimeDowntime = function (startTime, endTim
         return sum;
     }, {})
 
-    sumUD['measuretime'] = endTime - startTime
+    if (!sumUD['uptime']) sumUD['uptime'] = 0
+    if (!sumUD['downtime']) sumUD['downtime'] = 0
+
+    if (sumUD['uptime'] > 0) {
+        
+        if (sumUD['downtime'] > 0) {
+            
+            sumUD['SLA'] = (measuretime - sumUD['downtime']) / measuretime
+        }
+        else {
+
+            sumUD['SLA'] = 1
+        }
+    }
+    else {
+
+        sumUD['SLA'] = 0    
+    }
 
     return sumUD;
+}
+
+graphTools.cUptimeBar.prototype.calcSLA = function(day, rangeName) {
+
+    let year = day.getFullYear()
+    let month = day.getMonth()
+    let dayOfWeek = day.getDay(); 
+    dayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
+    let zeroDay = this.zeroDayTime(day)
+    let startTime = 0
+    let endTime = 1
+    switch (rangeName) {
+        case 'year': {
+            startTime = Math.floor(Date.UTC(year, 0) / 1000)
+            endTime = Math.floor(Date.UTC(year + 1) / 1000)
+            break;
+        }
+        case 'month': {
+            startTime = Math.floor(Date.UTC(year, month) / 1000)
+            endTime = Math.floor(Date.UTC(year, month + 1) / 1000)
+            break;
+        }
+        case 'week': {
+            startTime = zeroDay - (dayOfWeek - 1) * 86400
+            endTime = startTime + 86400 * 7
+            break;
+        }
+        default: {  //day
+            startTime = zeroDay
+            endTime = zeroDay + 86400
+            break;
+        }
+    }
+
+    return this.calcSLARange(startTime, endTime);
 }
 
 
