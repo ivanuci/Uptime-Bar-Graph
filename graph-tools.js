@@ -200,9 +200,9 @@ graphTools.cUptimeBar.prototype.calcSLARange = function (startTime, endTime) {
 
 graphTools.cUptimeBar.prototype.calcSLA = function(day, rangeName) {
 
-    let year = day.getFullYear()
-    let month = day.getMonth()
-    let dayOfWeek = day.getDay(); 
+    let year = day.getUTCFullYear()
+    let month = day.getUTCMonth()
+    let dayOfWeek = day.getUTCDay(); 
     dayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
     let zeroDay = this.zeroDayTime(day)
     let startTime = 0
