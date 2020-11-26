@@ -179,20 +179,13 @@ graphTools.cUptimeBar.prototype.calcSLARange = function (startTime, endTime) {
     if (!sumUD['uptime']) sumUD['uptime'] = 0
     if (!sumUD['downtime']) sumUD['downtime'] = 0
 
-    if (sumUD['uptime'] > 0) {
-        
-        if (sumUD['downtime'] > 0) {
-            
-            sumUD['SLA'] = (measuretime - sumUD['downtime']) / measuretime
-        }
-        else {
-
-            sumUD['SLA'] = 1
-        }
+    if (sumUD['uptime'] > 0 || sumUD['downtime'] > 0) {
+                  
+        sumUD['SLA'] = (sumUD['uptime'] / (sumUD['uptime'] + sumUD['downtime'])) * 100
     }
     else {
 
-        sumUD['SLA'] = 0    
+        sumUD['SLA'] = 0
     }
 
     return sumUD;
