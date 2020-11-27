@@ -179,23 +179,18 @@ graphTools.cUptimeBar.prototype.calcSLARange = function (startTime, endTime) {
     if (!sumUD['uptime']) sumUD['uptime'] = 0
     if (!sumUD['downtime']) sumUD['downtime'] = 0
 
-    if (sumUD['uptime'] > 0 || sumUD['downtime'] > 0) {
-                  
-        sumUD['SLA'] = (sumUD['uptime'] / (sumUD['uptime'] + sumUD['downtime'])) * 100
-    }
-    else {
-
-        sumUD['SLA'] = 0
-    }
+    if (sumUD['uptime'] > 0 || sumUD['downtime'] > 0)
+        sumUD['SLA'] = (sumUD['uptime'] / (sumUD['uptime'] + sumUD['downtime'])) * 100;
+    else sumUD['SLA'] = 0;
 
     return sumUD;
 }
 
-graphTools.cUptimeBar.prototype.calcSLA = function(day, rangeName) {
+graphTools.cUptimeBar.prototype.calcSLA = function (day, rangeName) {
 
     let year = day.getUTCFullYear()
     let month = day.getUTCMonth()
-    let dayOfWeek = day.getUTCDay(); 
+    let dayOfWeek = day.getUTCDay();
     dayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
     let zeroDay = this.zeroDayTime(day)
     let startTime = 0

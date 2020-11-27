@@ -15,7 +15,7 @@ svgTools.cSvg = function (width, height) {
     //this.element.setAttributeNS(null, "viewBox", "0 0 " + boxWidth + " " + boxHeight);
     this.element.setAttributeNS(null, "width", width);
     this.element.setAttributeNS(null, "height", height);
-    //this.element.style.display = "block";
+    this.element.style.display = "block";
     this.isSvgToolsObject = true;
 }
 
@@ -91,7 +91,8 @@ svgTools.group = function () {
 svgTools.cRectangle = function (width, height, fill) {
 
     this.element = document.createElementNS(svgTools.xmlns, "path");
-    this.element.setAttributeNS(null, "d", `M0,0 h${width} v${height} h-${width} z`);   //sharp
+    //this.element.setAttributeNS(null, "d", `M0,0 h${width} v${height} h-${width} z`);   //sharp
+    this.element.setAttributeNS(null, "d", 'M0,0 h' + width + ' v' + height + ' h-' + width + ' z');   //sharp
     this.element.setAttributeNS(null, 'fill', fill);
     this.isSvgToolsObject = true;
 }
