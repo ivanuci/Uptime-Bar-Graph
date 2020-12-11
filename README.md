@@ -6,23 +6,30 @@ Bar graph for monitoring uptime. Includes Tooltip on mouseover. Slider added for
 </p>
 
 ### Include in html (follow the order):
- * <script type="text/javascript" src="algorithms.js"></script>
- * <script type="text/javascript" src="svg-tools.js"></script>
- * <script type="text/javascript" src="graph-tools.js"></script>
- * <script type="text/javascript" src="tooltip.js"></script> <!-- optional -->
- * <script type="text/javascript" src="slider.js"></script> <!-- optional -->
+```html
+  <script type="text/javascript" src="algorithms.js"></script>
+  <script type="text/javascript" src="svg-tools.js"></script>
+  <script type="text/javascript" src="graph-tools.js"></script>
+  <script type="text/javascript" src="tooltip.js"></script> <!-- optional -->
+  <script type="text/javascript" src="slider.js"></script> <!-- optional -->
+```
+
 
 ### DATA example:
- * const sistemAData = [
+```html
+  const sistemAData = [
     { time: 1604488863, uptime: 18144290 },
     { time: 1604596863, uptime: 80000 },
- ]; // time and uptime in seconds
+  ]; // time and uptime in seconds
+```
 
 ### Basic call:
- * let sistemABar = graphTools.uptimeBar("sistemADiv", 450, 40, 2, sistemAData, null)
- * sistemABar.draw(new Date(), 28, 0)
+```html
+  let sistemABar = graphTools.uptimeBar("sistemADiv", 450, 40, 2, sistemAData, null)
+  sistemABar.draw(new Date(), 28, 0)
+```
 
 ### uptimeBar in example:
- * uptime.html
+<a href="https://github.com/ivanuci/Uptime-Bar-Graph/blob/main/uptime.html">uptime.html</a>
 
 
